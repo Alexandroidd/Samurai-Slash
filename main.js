@@ -99,7 +99,15 @@ readyButton.addEventListener('click', function(){
 
 
 //-----RESTART FUNCTION-----//
+var restart = function() {
+	var removeBangs = document.getElementById('bang');
+	document.body.removeChild(removeBangs);
+	waitingPeriod = Math.floor(Math.random() * (9000 - 3000)) + 3000;
+	startTime = 0;
+	
+	console.log("a fresh restart");
 
+}
 
 
 
