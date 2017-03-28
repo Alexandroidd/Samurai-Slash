@@ -32,8 +32,7 @@ html {
 #bang {
 	width: 250px;
 	height: 250px;
-	margin: 0 auto;
-	float: left;
+	align-self: center;
 }
 
 /*font-family: 'Press Start 2P', cursive;

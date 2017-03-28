@@ -2,9 +2,9 @@
 
 // -----PLAYER DATA ----//
 var playerOne = {
-	reactionTime: 0,
-	waitTime: 0
-};
+	baseTime: getTime
+	}; 
+
 
 var playerTwo = {
 	reactionTime: 0,
@@ -14,6 +14,7 @@ var playerTwo = {
 
 ///////OBJECT DATA//////
 var readyButton = document.getElementById('ready');
+var isWorking = false;
 
 
 
@@ -23,28 +24,64 @@ var readyButton = document.getElementById('ready');
 // for each player.
 // ------------------- //
 
-// --^^^^^^--Time_Related Variables + Functions ----^^^^^//
+
+
+// --*This determines waiting time*--//
 var waitingPeriod = Math.floor(Math.random() * (9000 - 3000)) + 3000;
 
+//---*tThis function makes the GO/ALERT box to shock player --//
 var bang = function(){
+bangBox();
   console.log("BANG is Working!");
 };
 
+
+//--Here the exclamation box is created--//
 bangBox = function() {
 	var bangBox = document.createElement('img');
 	document.body.appendChild(bangBox);
+	isWorking = true;
 	bangBox.id="bang";
 	bangBox.src = "images/bang.png";
+	document.getElementById('bang').addEventListener("load", getTime);
+	};
+
+
+
+
+//----This function gets the starting time of the Duel----//
+var getTime = function(event){
+	//this is where to save the timestamp into a variable
+	var startTime = Math.floor((event.timeStamp));
+	console.log(startTime);
+	return(startTime);
 };
 
-bangBox();
+var earlyRestart = function(){
+	var removeBangs = document.getElementById('bang');
+	document.body.removeChild(removeBangs);
+	waitingPeriod = Math.floor(Math.random() * (9000 - 3000)) + 3000;
+	startTime = 0;
+	console.log("FALSE START TTRY AGAIN");
+};
 
+
+var falseStart = function() {
+if(isWorking !== true) {
+	document.addEventListener('click', earlyRestart);     // -----add two variable that are each separate event listeners for the player's respective keys.
+} else {
+	return;
+}
+};
 
 
 // Here, "ready" button is active and initiates the 'timer'//
 readyButton.addEventListener('click', function(){
 	console.log(waitingPeriod); //will be changed to run the timeout.
 	console.log("I'm Ready!");
+	document.addEventListener('click', falseStart);
+
+
 	window.setTimeout(bang, waitingPeriod);
 	readyButton.style.opacity = '0';
 
@@ -55,6 +92,19 @@ readyButton.addEventListener('click', function(){
 
 
 
+//-----RESTART FROM FALSE START FUNCTION---//
+
+
+
+
+
+//-----RESTART FUNCTION-----//
+
+
+
+
+
+// console.log(startTime);
 //-----^^^^----------//
 
 
