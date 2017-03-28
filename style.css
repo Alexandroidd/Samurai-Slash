@@ -1,0 +1,40 @@
+/*----BACKGROUND IMAGE---*/
+html {
+	background: url(images/background.png) no-repeat center center fixed;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+}
+/*-------------*/
+
+
+#player1 {
+	height: 50px;
+	width: 50px;
+	background-color: red;
+	border-radius: 30px;
+	position: fixed;
+	bottom: 50px;
+	left: 10px;
+}
+
+#player2 {
+	height: 50px;
+	width: 50px;
+	background-color: green;
+	position: fixed;
+	bottom: 50px;
+	right: 10px;
+}
+
+#bang {
+	width: 250px;
+	height: 250px;
+	margin: 0 auto;
+	float: left;
+}
+
+/*font-family: 'Press Start 2P', cursive;
+*/
