@@ -35,41 +35,44 @@ var waitingPeriod = Math.floor(Math.random() * (9000 - 3000)) + 3000;
 // Here, "ready" button is active and initiates the 'timer'//
 //requires these vars: readyButton, falseStart, bang, waitingPeriod
 readyButton.addEventListener('click', function(){
-	console.log(waitingPeriod); //will be changed to run the timeout.
+	console.log(waitingPeriod);
 	console.log("I'm Ready!");
-	document.addEventListener('click', falseStart);
-
-
-	window.setTimeout(bang, waitingPeriod);
+	initiateBang();
+	document.addEventListener('click', falseStart); // <--- can add function with two separate event listeners for each player's key.
 	readyButton.style.opacity = '0';
-
 });
 
+var falseStart = function() {
+	stopBang();
+ 	document.removeEventListener('click',falseStart);
+	console.log("FALSE START TRY AGAIN");
 
 
+};
 
 //---*tThis function makes the GO/ALERT box to shock player --//
 //----------REQUIRES the ready button to be clicked which ---//
-//------sets off the timeout for this to occure.-------------//
-
+//------sets off the timeout for this to occur.-------------//
 var bang = function(){
 bangBox();
   console.log("BANG is Working!");
 };
+//------------------------------------------------------------//
+//***********************************************************//
 
 
-//--Here the exclamation box is created--//
+
+
+//-----so, bang() just passes off the baton to bangBox, which actually----//
+//-----creates the box which exclaims that is is time to react------------//
+
 bangBox = function() {
-	if (badStart === true) {
-		return;
-	} else {
-	var bangBox = document.createElement('img');
-	document.body.appendChild(bangBox);
-	isWorking = true;
-	bangBox.id="bang";
-	bangBox.src = "images/bang.png";
+	document.removeEventListener('click', falseStart);
+	var startBox = document.createElement('img');
+	document.body.appendChild(startBox);
+	startBox.id="bang";
+	startBox.src = "images/bang.png";
 	document.getElementById('bang').addEventListener("load", getTime);
-}
 	};
 
 
@@ -84,6 +87,8 @@ var getTime = function(event){
 };
 
 var earlyRestart = function(){
+	
+
 	waitingPeriod = Math.floor(Math.random() * (9000 - 3000)) + 3000;
 	startTime = 0;
 	readyButton.style.opacity = '1';
@@ -91,14 +96,11 @@ var earlyRestart = function(){
 };
 
 
-var falseStart = function() {
-if(isWorking !== true) {
-	badStart = true;
-	document.addEventListener('click', earlyRestart);     // -----add two variable that are each separate event listeners for the player's respective keys.
-} else {
-	return;
-}
-};
+
+//so this function is dependent on whether the startBox has appeared or not
+//if the box has NOT appeared, this function adds an event listener for player
+//input.-------------
+//this could simply be inserted into another function....
 
 
 
@@ -108,23 +110,34 @@ if(isWorking !== true) {
 
 
 
-//-----RESTART FROM FALSE START FUNCTION---//
 
 
+//-------------Initiate-The-bangBox----------//
+//--this-begins-the-whole-shebang-mode---only-occurs-if-no-false-start//
+var initiateBang = function(){
+		window.setTimeout(bang, waitingPeriod);
+	};
+//-------------------------------------------//
+				
+				
 
+//-----Stops the BOX from appearing ------//
+var stopBang = function(){
+		clearTimeout(initiateBang);
+	};
+//-----------------------------------------//
 
+			
 
 //-----RESTART FUNCTION-----//
 var restart = function() {
-	var removeBangs = document.getElementById('bang');
-	document.body.removeChild(removeBangs);
 	waitingPeriod = Math.floor(Math.random() * (9000 - 3000)) + 3000;
 	startTime = 0;
 	readyButton.style.opacity = '1';
 	console.log("a fresh restart");
 
 };
-
+//-------------------------//
 
 
 
