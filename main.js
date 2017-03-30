@@ -5,55 +5,40 @@
 //////////////////////////////////
 
 
-//----When to start Listening for False Start------//
-//---Had to put this outside the ready button because it was firing--//
-//---false start when it should just be ready-----//
+function falseStart() {
+	
+	console.log(clearTimeout(pause));
+	console.log("A false start has been triggered");
+}
 
 
+var pause;
+
+var timeOutBang = function(){
+		pause = window.setTimeout(bangBox, waitingPeriod);
+	};
+	
 
 
+// document.addEventListener('keydown', function(event) {
+//	if(event.code === "KeyL") {
 
-
-///----This is the FALSE START MECHANISM -------////
-//-----------------------------------------------///
-//--this function stops the timeout, removes the event
-//----listener and restarts the game----------//
-var falseStart = function(x) {
-	stopBang(x);
-	console.log("FALSE START has activated");
-	restart();
+var addListen = function(event) {
+	if(event.code === "KeyL" || event.code === "KeyA") {
+		falseStart(bangPause);
+	}
 };
-//--------------------//
-
-
-//This is TIME TO GO --- This function initiates the TIMEOUT of Bang.
-//This had to be separated out from the readyButton because it was
-//firing simultaneously as the game was being started.
-
-var timeToGo = function() {
-	console.log("initiating...");
-	return (initiateBang());
-};
-//------------//
 
 
 //-------------Initiate-The-bangBox----------//
 //--this-begins-the-whole-shebang-mode---only-occurs-if-no-false-start//
 var initiateBang = function(){
-		var pause = window.setTimeout(bang, waitingPeriod);
-		return pause;
-	};
+		pause = window.setTimeout(bang, waitingPeriod);
+			};
 //-------------------------------------------//
 				
 				
-
-//-----Stops the BOX from appearing ------//
-var stopBang = function(x){
-		clearTimeout(x);
-	};
-//-----------------------------------------//
-
-			
+	
 
 //----This function gets the starting time of the Duel----//
 var getTime = function(event){
@@ -71,14 +56,16 @@ var restart = function() {
 	waitingPeriod = Math.floor(Math.random() * (9000 - 3000)) + 3000;
 	startTime = 0;
 	readyButton.style.opacity = '1';
+	
 	console.log("a restart has been initiated");
-	document.removeEventListener('click',falseStart);
 
 };
 
 
 
 
+//IM THINKING THAT IF I CAN ATTACH THE EVENT LISTENER TO A SPECIFIC PART OF THE PLAYER OBJECT, 
+//I JUST DELETE THAT PART OF THE OBJECT LATER ON WHEN I NEED TO REMOVE THE EVENT LISTENER//
 
 
 
@@ -86,35 +73,35 @@ var restart = function() {
 
 // -----PLAYER DATA ----//
 var playerOne = {
-	baseTime: getTime
+	baseTime: getTime,
+	pushButton: "KeyA"
+	
 	}; 
 
 
 var playerTwo = {
-	reactionTime: 0,
-	waitTime: 0
+	baseTime: getTime,
+	pushButton: "KeyL"
 };
 //-------//
 
 ///////OBJECT DATA//////
 var readyButton = document.getElementById('ready');
-var playerZone = document.getElementById('player2');
-var timeToAlert;
+var timeToAlert = false;
 // var startListening = false;
-
-
-
-// Thinking about whether I should make an object constructor or not
-// for each player.
-// ------------------- //
-
 
 
 // --*This determines waiting time*--//
 var waitingPeriod = Math.floor(Math.random() * (9000 - 3000)) + 3000;
 //-------------------------------------
 
-
+// var addListen = function(x) {
+// 	document.addEventListener('keydown', function(event) {
+// 		if (event.code === "KeyA" || event.code === "KeyL") {
+// 			falseStart(x);
+// 		}
+// });
+// };
 
 // Here, "ready" button is active and initiates the 'timer'//
 //requires these vars: readyButton, falseStart, bang, waitingPeriod
@@ -123,32 +110,34 @@ readyButton.addEventListener('click', function(){
 	console.log("I'm Ready!");
       console.log("I'M LISTENING...");
       timeToAlert = true;
-      var kickOut = timeToGo();
-      playerZone.addEventListener('click', function() {
-      		falseStart(kickOut);
+      
+     let interval = initiateBang();
+      // var kickOut = timeToGo();
+      document.addEventListener('keydown', function n(){
+      	if (event.code === "KeyA" || event.code === "KeyL") {
+      		falseStart();
+      	}
+      	});
 
-      }); // <--- can add function with two separate event listeners for each player's key.
-
+     // <--- can add function with two separate event listeners for each player's key.
 	readyButton.style.opacity = '0';
 });
 
 
 
 
+//---------------------------//
 if(timeToAlert === true) {
-	timeToGo();
+timeOutBang();
 }
 
 
+//This global var is weird, had//
+//to separate it though.
+//----------------------------//
 
 
 
-
-// var listening = function(){
-//       document.addEventListener('click', falseStart); // <--- can add function with two separate event listeners for each player's key.
-//       console.log("I'M LISTENING...");
-// };
-// listening();
 
 
 //---*tThis function makes the GO/ALERT box to shock player --//
@@ -163,14 +152,18 @@ bangBox();
 //-----so, bang() just passes off the baton to bangBox, which actually----//
 //-----creates the box which exclaims that is is time to react------------//
 
+
 bangBox = function() {
-	document.removeEventListener('click', falseStart);
+	// document.removeEventListener('keydown', );
 	var startBox = document.createElement('img');
 	document.body.appendChild(startBox);
 	startBox.id="bang";
 	startBox.src = "images/bang.png";
 	document.getElementById('bang').addEventListener("load", getTime);
+
+
 	};
+
 
 
 
