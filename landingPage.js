@@ -6,7 +6,7 @@ function hazy() {
 }
 
 hazy();
-
+	
 
 
 var instructions = document.getElementById('instructions');
@@ -21,11 +21,7 @@ instructions.addEventListener('mouseout', function() {
 });
 
 instructions.addEventListener('click', function() {
-	var manual = document.createElement('div');
-	manual.id="manual";
-	manual.innerHTML="Welcome to Samurai Slash<br>This is a 2-player test of reflexes. The game requires you to be fast and aware!<br>As soon as you hit 'ready' the game will begin. Activate you player as soon as the '!' sign appears.<br>Player1 = 'A'<br>Player2 = 'B'";
-	manual.display.toggle('none');
+	manual.classList.toggle('appear');
 });
-
 
 

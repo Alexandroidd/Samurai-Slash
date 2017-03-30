@@ -76,7 +76,7 @@ var timeToAlert = false;
 
 
 // --*This determines waiting time*--//
-var waitingPeriod = 1000;//Math.floor(Math.random() * (9000 - 3000)) + 3000;
+var waitingPeriod = Math.floor(Math.random() * (9000 - 3000)) + 3000;
 //-------------------------------------
 
 
