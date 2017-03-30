@@ -1,0 +1,79 @@
+body {
+	background: url(images/_backgroundAnimate/background2.png) no-repeat center center fixed;
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+    transition: all 4s ease;
+    text-align: center;
+}
+
+body.animated {
+	animation-name: hazy;
+	animation-duration: 3s;
+	animation-iteration-count: 10;
+	animation-direction: normal;
+	animation-timing-function: ease-out;
+	animation-fill-mode: forwards;
+}
+/*-webkit-animation: hazy 4s steps(3) ;
+       -moz-animation: hazy 4s steps(3) infinite;
+        -ms-animation: hazy 4s steps(3) infinite;
+         -o-animation: hazy 4s steps(3) infinite;
+            animation: hazy 4s steps(3) infinite;*/
+
+
+@keyframes hazy {
+		0% {
+			background: url(images/_backgroundAnimate/background2.png) no-repeat center center fixed;
+		}
+		50% {
+		
+			background: url(images/_backgroundAnimate/backgroundAnm1.png) no-repeat center center fixed;
+		}
+		100% {
+			
+			background: url(images/_backgroundAnimate/background2.png) no-repeat center center fixed;
+		}
+		/*100% {
+			background: url(images/_backgroundAnimate/backgroundAnm2.png)no-repeat center center fixed;
+		}*/
+
+}
+
+
+#menu {
+	font-family: 'Press Start 2p', cursive;
+	color: #fdebe1;
+	box-shadow: 2px 2px 2px #000000;
+	text-align: center;
+	position: relative;
+	margin: auto;
+	line-height: 40px;
+	width: 400px;
+	height: 200px;
+	border: 2px solid black;
+	background: red; 
+    background: -webkit-linear-gradient(#d19885, #facca8); 
+    background: -o-linear-gradient(#d19885, #facca8); 
+    background: -moz-linear-gradient(#d19885, #facca8);
+    background: linear-gradient(#d19885, #facca8);
+}
+
+#menu p {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+span #instructions:hover {
+	color; blue;
+}
+
+
+
+
+
+

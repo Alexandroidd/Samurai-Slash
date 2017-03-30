@@ -47,6 +47,11 @@ var falseStart = function(x) {
 
 
 
+
+
+
+
+
 //----------------------stuff I cut from the original----------//
 //-----Stops the BOX from appearing ------//
 var stopBang = function(x){
@@ -65,8 +70,26 @@ var timeToGo = function() {
 //------------//
 
 
+///----This is the FALSE START MECHANISM -------////
+//-----------------------------------------------///
+//--this function stops the timeout, removes the event
+//----listener and restarts the game----------//
+var falseStart = function(x) {
+	stopBang(x);
+	console.log("FALSE START has activated");
+	restart();
+};
+//--------------------//
 
 
+
+var addListen = function() {
+	window.setTimeout(bang, waitingPeriod);
+};
+
+addThis = function(){
+	falseStart(addListen);
+};
 
 
 

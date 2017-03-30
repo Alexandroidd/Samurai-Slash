@@ -7,6 +7,12 @@
 
 function falseStart() {
 	clearTimeout(pause);
+	japan.pause();
+	whoops.play();
+	var falseBox = document.createElement('div');
+		falseBox.id='falseStart';
+		falseBox.innerHTML='FALSE START!';
+		document.body.appendChild(falseBox);
 	console.log("A false start has been triggered");
 }
 
@@ -16,6 +22,7 @@ var audioSlash = document.getElementById('slashSound');
 var audioSlash2 = document.getElementById('slashSound2');
 var japan = document.getElementById('japan');
 var ding = document.getElementById('ding');
+var whoops = document.getElementById('whoops');
 
 //-------------Initiate-The-bangBox----------//
 //--this-begins-the-whole-shebang-mode---only-occurs-if-no-false-start//
@@ -89,7 +96,7 @@ readyButton.addEventListener('click', function(){
 	console.log(waitingPeriod);
 	console.log("I'm Ready!");
       console.log("I'M LISTENING...");
-      // japan.play();
+      japan.play();
       timeToAlert = true;
      let interval = initiateBang();
       document.addEventListener('keydown', n);
