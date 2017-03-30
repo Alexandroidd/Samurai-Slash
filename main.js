@@ -12,6 +12,10 @@ function falseStart() {
 
 var pause;	
 var startTime;
+var audioSlash = document.getElementById('slashSound');
+var audioSlash2 = document.getElementById('slashSound2');
+var japan = document.getElementById('japan');
+var ding = document.getElementById('ding');
 
 //-------------Initiate-The-bangBox----------//
 //--this-begins-the-whole-shebang-mode---only-occurs-if-no-false-start//
@@ -36,7 +40,7 @@ var getTime = function(event){
 
 //-----RESTART FUNCTION-----//
 var restart = function() {
-	waitingPeriod = Math.floor(Math.random() * (9000 - 3000)) + 3000;
+	waitingPeriod = 1000;//Math.floor(Math.random() * (9000 - 3000)) + 3000;
 	startTime = 0;
 	readyButton.style.opacity = '1';
 	
@@ -83,6 +87,7 @@ readyButton.addEventListener('click', function(){
 	console.log(waitingPeriod);
 	console.log("I'm Ready!");
       console.log("I'M LISTENING...");
+      japan.play();
       timeToAlert = true;
      let interval = initiateBang();
       document.addEventListener('keydown', n);
@@ -96,12 +101,26 @@ var playerOneTime;
 
 var playerTwoTime;
 
+var pOneCharacter = document.getElementById('player1');
+var pTwoCharacter = document.getElementById('player2');
+
+function playerOneAction() {
+	pOneCharacter.classList.toggle('animated');
+	audioSlash.play();
+}
+
+function playerTwoAction() {
+	pTwoCharacter.classList.toggle('animated');
+	audioSlash2.play();
+}
 
 
 function pOne() {
 	if (event.code === "KeyA") {
 		playerOneTime = Math.floor((event.timeStamp));
 		movesPlayed++;
+		// pOneCharacter.className += 'alt';
+		playerOneAction();
 		evalWinner();
 		console.log(playerOneTime);
 	}
@@ -110,6 +129,7 @@ function pTwo() {
 	if (event.code === "KeyL") {
 		playerTwoTime = Math.floor((event.timeStamp));
 		movesPlayed++;
+		playerTwoAction();
 		evalWinner();
 		console.log(playerTwoTime);
 	}
@@ -118,8 +138,14 @@ function pTwo() {
 function evalWinner() {
 	if ( movesPlayed === 2 && (playerOneTime - startTime) < (playerTwoTime - startTime)) {
 		console.log("PLAYER ONE WINS");
+		var oneWins = document.createElement('div');
+		oneWins.id="oneWins";
+		document.body.appendChild(oneWins);
+
 	} else if (movesPlayed === 2 && (playerTwoTime - startTime) < (playerOneTime - startTime)) {
 		console.log("Player Two WINS!");
+	} else if (movesPlayed === 2 && (playerOneTime === playerTwoTime)) {
+		console.log("It's a tie!");
 	}
 }
 var movesPlayed = 0;
@@ -128,6 +154,8 @@ bangBox = function() {
 	document.removeEventListener('keydown', n);
 	var startBox = document.createElement('img');
 	document.body.appendChild(startBox);
+	japan.pause();
+	ding.play();
 	startBox.id="bang";
 	startBox.src = "images/bang.png";
 	document.getElementById('bang').addEventListener("load", getTime);
