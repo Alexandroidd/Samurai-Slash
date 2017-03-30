@@ -69,13 +69,15 @@ var timeToAlert = false;
 
 
 // --*This determines waiting time*--//
-var waitingPeriod = Math.floor(Math.random() * (9000 - 3000)) + 3000;
+var waitingPeriod = 1000;//Math.floor(Math.random() * (9000 - 3000)) + 3000;
 //-------------------------------------
 
 
 
 function n() {
 	if (event.code === "KeyA" || event.code === "KeyL") {
+		japan.pause();
+
 		falseStart();
 	}
 }
@@ -87,7 +89,7 @@ readyButton.addEventListener('click', function(){
 	console.log(waitingPeriod);
 	console.log("I'm Ready!");
       console.log("I'M LISTENING...");
-      japan.play();
+      // japan.play();
       timeToAlert = true;
      let interval = initiateBang();
       document.addEventListener('keydown', n);
@@ -119,6 +121,7 @@ function pOne() {
 	if (event.code === "KeyA") {
 		playerOneTime = Math.floor((event.timeStamp));
 		movesPlayed++;
+		removeBox();
 		// pOneCharacter.className += 'alt';
 		playerOneAction();
 		evalWinner();
@@ -129,21 +132,37 @@ function pTwo() {
 	if (event.code === "KeyL") {
 		playerTwoTime = Math.floor((event.timeStamp));
 		movesPlayed++;
+		removeBox();
 		playerTwoAction();
 		evalWinner();
 		console.log(playerTwoTime);
 	}
 }
 
+function removeBox(){
+		if (document.getElementById('bang')){
+		document.body.removeChild(document.getElementById('bang'));
+	} else {
+		return;
+	}
+}
+
+
 function evalWinner() {
 	if ( movesPlayed === 2 && (playerOneTime - startTime) < (playerTwoTime - startTime)) {
 		console.log("PLAYER ONE WINS");
 		var oneWins = document.createElement('div');
 		oneWins.id="oneWins";
+		oneWins.innerHTML = 'Player One Wins!';
 		document.body.appendChild(oneWins);
 
 	} else if (movesPlayed === 2 && (playerTwoTime - startTime) < (playerOneTime - startTime)) {
 		console.log("Player Two WINS!");
+		var twoWins = document.createElement('div');
+		twoWins.id='twoWins';
+		twoWins.innerHTML='Player Two Wins!';
+		document.body.appendChild(twoWins);
+
 	} else if (movesPlayed === 2 && (playerOneTime === playerTwoTime)) {
 		console.log("It's a tie!");
 	}

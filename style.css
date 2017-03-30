@@ -1,6 +1,6 @@
 /*----BACKGROUND IMAGE---*/
 html {
-	background: url(images/background.png) no-repeat center center fixed;
+	background: url(images/background2.png) no-repeat center center fixed;
 	-webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -66,15 +66,47 @@ html {
 	to {background-position: 400px;}
 }
 
-
-
-
-
 #bang {
 	width: 200px;
 	height: 200px;
 	margin: auto;
 	display:block;
+}
+
+#oneWins {
+	font-family: 'Press Start 2p', cursive;
+	color: #fdebe1;
+	box-shadow: 2px 2px 2px #000000;
+	margin: 10px auto;
+	text-align: center;
+	line-height: 12;
+	right: 300px;
+	width: 300px;
+	height: 200px;
+	border: 2px solid black;
+	background: red; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#d19885, #facca8); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#d19885, #facca8); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#d19885, #facca8); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#d19885, #facca8); /* Standard syntax */
+}
+
+#twoWins {
+	font-family: 'Press Start 2p', cursive;
+	color: #fdebe1;
+	box-shadow: 2px 2px 2px #000000;
+	margin: 10px auto;
+	text-align: center;
+	line-height: 12;
+	right: 300px;
+	width: 300px;
+	height: 200px;
+	border: 2px solid black;
+	background: red; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#867c25, #dcbf41); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#867c25, #dcbf41); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#867c25, #dcbf41);/* For Firefox 3.6 to 15 */
+    background: linear-gradient(#867c25, #dcbf41); /* Standard syntax */
 }
 
 /*font-family: 'Press Start 2P', cursive;
