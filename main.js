@@ -6,8 +6,11 @@
 var falseBox;
 
 function falseStart() {
+	if (hasFalseStartHappened === true) {
+		return;
+	} else {
 	clearTimeout(pause);
-	japan.pause();
+	japan.currentTime = 0;
 	whoops.play();
 	falseBox = document.createElement('div');
 		falseBox.id='falseStart';
@@ -15,8 +18,10 @@ function falseStart() {
 		document.body.appendChild(falseBox);
 	console.log("A false start has been triggered");
 	window.setTimeout(restart,1000);
+	hasFalseStartHappened = true;
+	}
 }
-
+var hasFalseStartHappened = false;
 var pause;	
 var startTime;
 var audioSlash = document.getElementById('slashSound');
@@ -48,9 +53,12 @@ var getTime = function(event){
 
 //-----RESTART FUNCTION-----//
 var restart = function() {
+	hasFalseStartHappened = false;
 	waitingPeriod = Math.floor(Math.random() * (9000 - 3000)) + 3000;
 	movesPlayed = 0;
+	japan.currentTime = 0;
 	readyButton.style.opacity = '1';
+	document.removeEventListener('keydown', n);
 	document.removeEventListener('keydown', pTwo);
 	document.removeEventListener('keydown', pOne);
 	if(oneWins !== undefined) {
@@ -66,8 +74,15 @@ var restart = function() {
 		document.body.removeChild(falseBox);
 		falseBox = undefined;
 	}
-	pOneCharacter.classList.toggle('animated');
-	pTwoCharacter.classList.toggle('animated');
+	if (pOneCharacter.classList.contains('animated')) {
+		pOneCharacter.classList.toggle('animated');
+	}
+
+	if (pTwoCharacter.classList.contains('animated')) {
+		pTwoCharacter.classList.toggle('animated');
+	}
+	// pOneCharacter.classList.toggle('animated');
+	// pTwoCharacter.classList.toggle('animated');
 	console.log("a restart has been initiated");
 	console.log(typeof falseBox);
 
