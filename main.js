@@ -66,6 +66,8 @@ var restart = function() {
 		document.body.removeChild(falseBox);
 		falseBox = undefined;
 	}
+	pOneCharacter.classList.toggle('animated');
+	pTwoCharacter.classList.toggle('animated');
 	console.log("a restart has been initiated");
 	console.log(typeof falseBox);
 
