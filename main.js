@@ -52,6 +52,11 @@ var getTime = function(event){
 
 
 //-----RESTART FUNCTION-----//
+//---To add the ability to save player scores you would need//
+//---to reset the player scores here so that they start fresh//
+//---each time. While also saving past times in another varaiable//
+//---and then having a function which compares all of those values//
+//---to determine the best one.//
 var restart = function() {
 	hasFalseStartHappened = false;
 	waitingPeriod = Math.floor(Math.random() * (9000 - 3000)) + 3000;
@@ -128,13 +133,11 @@ function n() {
 readyButton.addEventListener('click', function(){
 	console.log(waitingPeriod);
 	console.log("I'm Ready!");
-      console.log("I'M LISTENING...");
-      japan.play();
-      timeToAlert = true;
-     let interval = initiateBang();
-      document.addEventListener('keydown', n);
-
-     // <--- can add function with two separate event listeners for each player's key.
+    console.log("I'M LISTENING...");
+    japan.play();
+    timeToAlert = true;
+    let interval = initiateBang();
+    document.addEventListener('keydown', n); //stops music, triggers false start
 	readyButton.style.opacity = '0';
 });
 
@@ -208,6 +211,7 @@ function evalWinner() {
 
 	} else if (movesPlayed === 2 && (playerOneTime === playerTwoTime)) {
 		console.log("It's a tie!");
+		window.setTimeout(restart, 2000); //
 	}
 }
 var movesPlayed = 0;
