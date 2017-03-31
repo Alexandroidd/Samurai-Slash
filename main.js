@@ -3,17 +3,18 @@
 //*******GAME FUNCTION DATA*****//						
 //******************************//
 //////////////////////////////////
-
+var falseBox;
 
 function falseStart() {
 	clearTimeout(pause);
 	japan.pause();
 	whoops.play();
-	var falseBox = document.createElement('div');
+	falseBox = document.createElement('div');
 		falseBox.id='falseStart';
 		falseBox.innerHTML='FALSE START!';
 		document.body.appendChild(falseBox);
 	console.log("A false start has been triggered");
+	window.setTimeout(restart,1000);
 }
 
 var pause;	
@@ -48,10 +49,25 @@ var getTime = function(event){
 //-----RESTART FUNCTION-----//
 var restart = function() {
 	waitingPeriod = Math.floor(Math.random() * (9000 - 3000)) + 3000;
-	startTime = 0;
+	movesPlayed = 0;
 	readyButton.style.opacity = '1';
-	
+	document.removeEventListener('keydown', pTwo);
+	document.removeEventListener('keydown', pOne);
+	if(oneWins !== undefined) {
+		document.body.removeChild(oneWins);
+		oneWins = undefined;
+		console.log(oneWins);
+	}
+	if (twoWins !== undefined) {
+		document.body.removeChild(twoWins);
+		twoWins = undefined;
+	}
+	if (falseBox !== undefined) {
+		document.body.removeChild(falseBox);
+		falseBox = undefined;
+	}
 	console.log("a restart has been initiated");
+	console.log(typeof falseBox);
 
 };
 
@@ -153,22 +169,25 @@ function removeBox(){
 		return;
 	}
 }
-
+var oneWins;
+var twoWins;
 
 function evalWinner() {
 	if ( movesPlayed === 2 && (playerOneTime - startTime) < (playerTwoTime - startTime)) {
 		console.log("PLAYER ONE WINS");
-		var oneWins = document.createElement('div');
+		oneWins = document.createElement('div');
 		oneWins.id="oneWins";
 		oneWins.innerHTML = 'Player One Wins!';
 		document.body.appendChild(oneWins);
+		window.setTimeout(restart, 2000);
 
 	} else if (movesPlayed === 2 && (playerTwoTime - startTime) < (playerOneTime - startTime)) {
 		console.log("Player Two WINS!");
-		var twoWins = document.createElement('div');
+		twoWins = document.createElement('div');
 		twoWins.id='twoWins';
 		twoWins.innerHTML='Player Two Wins!';
 		document.body.appendChild(twoWins);
+		window.setTimeout(restart, 2000);
 
 	} else if (movesPlayed === 2 && (playerOneTime === playerTwoTime)) {
 		console.log("It's a tie!");
