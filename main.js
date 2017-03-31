@@ -47,7 +47,7 @@ var getTime = function(event){
 
 //-----RESTART FUNCTION-----//
 var restart = function() {
-	waitingPeriod = 1000;//Math.floor(Math.random() * (9000 - 3000)) + 3000;
+	waitingPeriod = Math.floor(Math.random() * (9000 - 3000)) + 3000;
 	startTime = 0;
 	readyButton.style.opacity = '1';
 	
