@@ -1,3 +1,7 @@
+var zelda = document.getElementById('zelda');
+zelda.play();
+
+
 
 function hazy() {
 	var theBackground = document.querySelector('body');
