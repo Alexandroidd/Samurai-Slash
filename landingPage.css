@@ -1,5 +1,5 @@
 body {
-	background: url(images/_backgroundAnimate/background2.png) no-repeat center center fixed;
+	background: url(images/backgroundAnimate/background2.png) no-repeat center center fixed;
 	-webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -26,15 +26,15 @@ body.animated {
 
 @keyframes hazy {
 		0% {
-			background: url(images/_backgroundAnimate/background2.png) no-repeat center center fixed;
+			background: url(images/backgroundAnimate/background2.png) no-repeat center center fixed;
 		}
 		50% {
 		
-			background: url(images/_backgroundAnimate/backgroundAnm1.png) no-repeat center center fixed;
+			background: url(images/backgroundAnimate/backgroundAnm1.png) no-repeat center center fixed;
 		}
 		100% {
 			
-			background: url(images/_backgroundAnimate/background2.png) no-repeat center center fixed;
+			background: url(images/backgroundAnimate/background2.png) no-repeat center center fixed;
 		}
 		/*100% {
 			background: url(images/_backgroundAnimate/backgroundAnm2.png)no-repeat center center fixed;
