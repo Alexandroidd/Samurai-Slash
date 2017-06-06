@@ -1,0 +1,23 @@
+{
+  "name": "Samurai-Slash",
+  "version": "1.0.0",
+  "description": "# [Link to my Trello] (https://trello.com/b/rAcxfX7i/project-one)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alexandroidd/Samurai-Slash.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alexandroidd/Samurai-Slash/issues"
+  },
+  "homepage": "https://github.com/Alexandroidd/Samurai-Slash#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}
