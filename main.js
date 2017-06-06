@@ -16,7 +16,7 @@ function falseStart() {
 		falseBox.id='falseStart';
 		falseBox.innerHTML='FALSE START!';
 		document.body.appendChild(falseBox);
-	console.log("A false start has been triggered");
+	console.log('A false start has been triggered');
 	window.setTimeout(restart,1000);
 	hasFalseStartHappened = true;
 	}
